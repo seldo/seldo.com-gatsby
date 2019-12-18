@@ -1,0 +1,5 @@
+- put secrets in netlify
+- connect to DB in API call
+- call DB at build time to get data
+- build front page based on data
+- build all pages based on data
