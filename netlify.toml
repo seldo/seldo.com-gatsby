@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/login"
+  to = "/.netlify/functions/start-oauth"
+  status = 302
