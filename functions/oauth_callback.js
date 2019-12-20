@@ -1,7 +1,6 @@
-const mariadb = require('mariadb')
 const Twitter = require('twitter-lite')
 const cookie = require('cookie')
-const moment = require('moment-timezone')
+const isAuthed = require('auth/db')
 
 const oauthConsumerKey = process.env.OAUTH_CONSUMER_KEY
 const oauthConsumerSecret = process.env.OAUTH_CONSUMER_SECRET
@@ -38,21 +37,9 @@ exports.handler = async (event, context) => {
 
     // TODO: store the access token and secret for this user so we can use it to send tweets
 
-    // authorize by fetching the user from the user database
-    const pool = db.createPool({
-        host: process.env.DB_HOST, 
-        user: process.env.DB_USER, 
-        password: process.env.DB_PASS, 
-        database: process.env.DB_NAME,
-        connectionLimit: 5
-    })    
-
-    let conn = await pool.getConnection()
-    let rows = await conn.query("SELECT * FROM users WHERE username = ?",username)
-
     // if admin, redirect to admin screen
     // if not explode in confusion
-    if (rows[0].username === username) {
+    if (isAuthed(username)) {
         return {
             statusCode: 302,
             headers: {

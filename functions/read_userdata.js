@@ -1,6 +1,8 @@
-const mariadb = require('mariadb')
 const Twitter = require('twitter-lite')
 const cookie = require('cookie')
+const isAuthed = require('./auth/db')
+
+// FIXME: local env is not sending these
 
 const oauthConsumerKey = process.env.OAUTH_CONSUMER_KEY
 const oauthConsumerSecret = process.env.OAUTH_CONSUMER_SECRET
@@ -34,70 +36,33 @@ exports.handler = async (event, context) => {
     let response = await client.get("account/verify_credentials")
     let username = response.screen_name
 
-    /* read username to authorize */
-
-    let body
-    try {
-        body = JSON.parse(event.body)
-    } catch (e) {
+    /* read username to authorize */  
+    if (!isAuthed(username)) {
         return {
-            statusCode: 500,
+            statusCode: 403,
             body: JSON.stringify({
-                error: "failed to parse payload, you should post JSON",
-                details: e.toString()
+                error: "Not authorized",
+                details: `Username was ${username}`
             })
         }
     }
+    // okay, authenticated and authorized now
 
-    let tweet = {
-        who: username, // must come from auth, do not let user specify!
-        what: body.what,
-        when: body.when, // danger: a savvy user could specify any number of tweets for themselves
-        sent: false
-    }
+    // FIXME: need to centralize SQL somewhere!
+    const pool = db.createPool({
+        host: process.env.DB_HOST, 
+        user: process.env.DB_USER, 
+        password: process.env.DB_PASS, 
+        database: process.env.DB_NAME,
+        connectionLimit: 5
+    })    
 
-    /* save this tweet */
-    const q = faunadb.query
-    const faunaClient = new faunadb.Client({
-        secret: process.env.FAUNADB_SERVER_SECRET
-    })
-    let stored
-    if (body.id) {
-        // update existing tweet
-        try {
-            stored = await faunaClient.query(
-                q.Update(
-                    q.Ref(
-                        q.Collection('tweets'),
-                        body.id
-                    ),
-                    {
-                        data: tweet
-                    }
-                )                    
-            )
-        } catch (e) {
-            console.log("Error storing tweet")
-            console.log(tweet)
-        }
-    } else {
-        // store new tweet
-        try {
-            stored = await faunaClient.query(
-                q.Create(
-                    q.Ref('collections/tweets'),
-                    {data:tweet}
-                )
-            )
-        } catch (e) {
-            console.log("Error storing tweet")
-            console.log(tweet)
-        }
-    }
+    let conn = await pool.getConnection()
+    let rows = await conn.query("SELECT * from users WHERE username = ?",username)
 
     return {
         statusCode: 200,
-        body: JSON.stringify(stored)
+        body: JSON.stringify(rows[0])
     }
 
 }
