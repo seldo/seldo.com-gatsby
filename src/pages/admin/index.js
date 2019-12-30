@@ -19,7 +19,7 @@ const AdminPage = ({pageContext}) => {
   return (  
     <Layout>
       <SEO title="Admin Page" />
-      { user ? (
+      { user.username ? (
         <>
           <p>Hello {user.username}</p>
         </>

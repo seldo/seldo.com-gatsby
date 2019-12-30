@@ -1,6 +1,6 @@
 const Twitter = require('twitter-lite')
 const cookie = require('cookie')
-const isAuthed = require('auth/db')
+const isAuthorized = require('./lib/authorize')
 
 const oauthConsumerKey = process.env.OAUTH_CONSUMER_KEY
 const oauthConsumerSecret = process.env.OAUTH_CONSUMER_SECRET
@@ -39,7 +39,7 @@ exports.handler = async (event, context) => {
 
     // if admin, redirect to admin screen
     // if not explode in confusion
-    if (isAuthed(username)) {
+    if (isAuthorized(username)) {
         return {
             statusCode: 302,
             headers: {

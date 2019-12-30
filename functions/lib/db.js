@@ -1,7 +1,6 @@
 const db = require('mariadb')
 
-const isAuthed = async (username) => {
-
+const dbConn = async (andThen) => {
     // authorize by fetching the user from the user database
     const pool = db.createPool({
         host: process.env.DB_HOST, 
@@ -12,14 +11,7 @@ const isAuthed = async (username) => {
     })    
 
     let conn = await pool.getConnection()
-    let rows = await conn.query("SELECT * FROM users WHERE username = ?",username)
-
-    if (rows[0].username === username) {
-        return true
-    } else {
-        return false
-    }
-
+    return andThen(conn)
 }
 
-module.exports = isAuthed
+module.exports = dbConn
