@@ -37,8 +37,8 @@ exports.handler = async (event, context) => {
 
     // TODO: store the access token and secret for this user so we can use it to send tweets
 
-    // if admin, redirect to admin screen
-    // if not explode in confusion
+    // if admin, set cookie and redirect to admin screen
+    // if not, explode in confusion
     if (isAuthorized(username)) {
         return {
             statusCode: 302,

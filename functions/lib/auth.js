@@ -5,12 +5,13 @@ const isAuthorized = require('./authorize')
 const oauthConsumerKey = process.env.OAUTH_CONSUMER_KEY
 const oauthConsumerSecret = process.env.OAUTH_CONSUMER_SECRET
 
-const auth = async (cookieHeaders,andThen) => {
+/** this does both authorization and authentication */
+const auth = async (event,andThen) => {
 
     /* read cookies and query twitter to authenticate */
     let cookies, secrets, accessToken, accessSecret
     try {
-        cookies = cookie.parse(cookieHeaders)
+        cookies = cookie.parse(event.headers.cookie)
         secrets = JSON.parse(cookies.mysecrets)
         accessToken = secrets.access_token
         accessSecret = secrets.access_token_secret
@@ -49,7 +50,7 @@ const auth = async (cookieHeaders,andThen) => {
 
     if ( await isAuthorized(username)) {
         // okay, authenticated and authorized now
-        return await andThen(user)
+        return await andThen(event,user)
     } else {
         // authenticated but not authorized
         return {

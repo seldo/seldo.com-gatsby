@@ -3,8 +3,10 @@ const dbConn = require('./lib/db')
 
 const action = async (event,user) => {
 
+    console.log(event)
+
     return await dbConn( async (conn) => {
-        let rows = await conn.query("SELECT * from users WHERE username = ?",user.screen_name)
+        let rows = await conn.query("SELECT * from content WHERE codename = ?","becoming_american")
         return {
             statusCode: 200,
             headers: {
