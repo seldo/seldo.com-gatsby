@@ -1,17 +1,12 @@
 const auth = require('./lib/auth')
 const dbConn = require('./lib/db')
+const respond = require('./lib/respond')
 
 const action = async (event,user) => {
 
     return await dbConn( async (conn) => {
         let rows = await conn.query("SELECT * from users WHERE username = ?",user.screen_name)
-        return {
-            statusCode: 200,
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify(rows[0])
-        }    
+        return respond(200,rows[0])
     })    
 
 }

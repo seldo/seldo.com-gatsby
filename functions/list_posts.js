@@ -1,26 +1,14 @@
-const db = require('mariadb')
+const dbConn = require('./lib/db')
+const respond = require('./lib/respond')
 
 exports.handler = async (event, context) => {
 
-    const pool = db.createPool({
-        host: process.env.DB_HOST, 
-        user: process.env.DB_USER, 
-        password: process.env.DB_PASS, 
-        database: process.env.DB_NAME,
-        connectionLimit: 5
-    })    
+    return await dbConn( async (conn) => {
+        let rows = await conn.query("SELECT * from content ORDER BY created DESC LIMIT 10")
 
-    let conn = await pool.getConnection()
-    let rows = await conn.query("SELECT * from content ORDER BY created DESC LIMIT 10")
-
-    return {
-        statusCode: 200,
-        headers: {
-            "content-type": "application/json",
-        },
-        body: JSON.stringify({
+        return respond(200,{
             rows
         })
-    }
+    })
 
 }

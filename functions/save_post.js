@@ -4,11 +4,17 @@ const respond = require('./lib/respond')
 
 const action = async (event,user) => {
 
-    console.log(event)
+    let body = JSON.parse(event.body)
+    let codename = body.codename
+
+    if (!codename) return 
 
     return await dbConn( async (conn) => {
-        let rows = await conn.query("SELECT * from content WHERE codename = ?",event.queryStringParameters.codename)
-        return respond(200,rows[0])
+        let rows = await conn.query("SELECT * from content WHERE codename = ?",'bob')
+        return respond(200,{
+            "I": "am",
+            "The": "post"
+        })
     })    
 
 }
