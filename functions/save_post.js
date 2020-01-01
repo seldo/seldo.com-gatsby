@@ -7,7 +7,9 @@ const action = async (event,user) => {
     let body = JSON.parse(event.body)
     let codename = body.codename
 
-    if (!codename) return 
+    if (!codename) return respond(500,{
+        "error": "Need a response"
+    })
 
     return await dbConn( async (conn) => {
         let rows = await conn.query("SELECT * from content WHERE codename = ?",'bob')
