@@ -15,11 +15,39 @@ const action = async (event,user) => {
 
     if (update) {
         return await dbConn( async (conn) => {
-            let rows = await conn.query("-- MOOP",)
-            return respond(200,{
-                "I": "am",
-                "The": "post"
-            })
+            try {
+                if(!post.id) throw new Error("No post ID to update")
+                let updateResult = await conn.query(
+                    `UPDATE content
+                     SET 
+                        title = ?,
+                        body = ?,
+                        excerpt = ?,
+                        updated = now(),
+                        codename = ?,
+                        draft = ?
+                     WHERE
+                        id = ?
+                     `,
+                     [
+                        post.title,
+                        post.body,
+                        post.excerpt || post.body.substring(0,500),
+                        post.codename || slugify(post.title),
+                        post.draft,
+                        post.id
+                     ]
+                )
+                console.log(updateResult)
+                let postResult = await conn.query(`SELECT * FROM content WHERE id = ?`,[post.id])                
+                return respond(200,{
+                    action: "updated",
+                    post: postResult
+                })
+            } catch (e) {
+                console.log(e)
+                return respond(500,e)
+            }
         })        
     } else {
         return await dbConn( async (conn) => {

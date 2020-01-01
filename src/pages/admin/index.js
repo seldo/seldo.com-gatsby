@@ -82,6 +82,7 @@ const AdminPage = ({pageContext}) => {
         <>
           <div className="postForm">
             <div className="postResult">{postResult}</div>
+            <input type="hidden" name="id" value={post.id} />
             <p>Title: <input type="text" name="title" value={post.title} onChange={handleChange} /></p>
             <p>Slug: <input type="text" name="codename" value={post.codename} onChange={handleChange} /></p>
             <input type="hidden" name="original_codename" value={originalCodename} />
