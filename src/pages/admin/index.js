@@ -1,16 +1,18 @@
 import React, {useState,useEffect} from "react"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
+import slugify from "@sindresorhus/slugify"
 
 const AdminPage = ({pageContext}) => {
 
   const [user, setUser] = useState(false)
   const [postList, setPostList] = useState([])
-  const [post,setPost] = useState({
+  let [post,setPost] = useState({
     title: '',
     codename: '',
     body: ''
   })
+  let [postResult,setPostResult] = useState('')
   const [originalCodename,setOriginalCodename] = useState(false)
 
   const fetchUserData = async () => {
@@ -45,12 +47,28 @@ const AdminPage = ({pageContext}) => {
         })
       }
     )
-    let json = await res.json()
-    console.log("Save action returned")
-    console.log(json)
+    if (res.status === 200) {
+      // TODO: display a preview
+      let result = await res.json()
+      if (result.action === "created") {
+        postResult = "New post created!"
+      } else if (result.action === "updated") {
+        postResult = "Post updated!"
+      } else {
+        postResult = "Something good happend but I dunno what?"
+      }
+      post = result.post
+    }
+    setPost(post)
+    setOriginalCodename(post.codename)
+    setPostResult(postResult)
   }
 
   const handleChange = (event) => {
+    if (event.target.name === "title") {
+      post.codename = slugify(event.target.value)
+    }
+
     setPost({      
       ...post,
       [event.target.name]: event.target.value
@@ -63,12 +81,13 @@ const AdminPage = ({pageContext}) => {
       { user.username ? (
         <>
           <div className="postForm">
+            <div className="postResult">{postResult}</div>
             <p>Title: <input type="text" name="title" value={post.title} onChange={handleChange} /></p>
             <p>Slug: <input type="text" name="codename" value={post.codename} onChange={handleChange} /></p>
             <input type="hidden" name="original_codename" value={originalCodename} />
             <p><textarea name="body" value={post.body} onChange={handleChange} /></p>
-            <p><button onClick={(e) => {createOrUpdatePost(e,true)}}>Publish</button></p>
-            <p><button onClick={(e) => {createOrUpdatePost(e,false)}}>Save draft</button></p>
+            <p><button onClick={(e) => {createOrUpdatePost(e,true)}}>Save draft</button></p>
+            <p><button onClick={(e) => {createOrUpdatePost(e,false)}}>Publish</button></p>
           </div>
           <div className="postList">
             <ul>

@@ -5,6 +5,7 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@sindresorhus/slugify": "^0.9.1",
     "gatsby": "^2.18.17",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-manifest": "^2.2.31",
@@ -19,7 +20,6 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "slugify": "^1.3.6",
     "twitter-lite": "^0.9.4"
   },
   "devDependencies": {

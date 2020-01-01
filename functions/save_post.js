@@ -7,8 +7,6 @@ const action = async (event,user) => {
 
     let post = JSON.parse(event.body)
 
-    console.log(post)
-
     let update = true
 
     if (!post.originalCodename) {
@@ -25,17 +23,28 @@ const action = async (event,user) => {
         })        
     } else {
         return await dbConn( async (conn) => {
-            let result = await conn.query(
-                `INSERT INTO content (title,body,excerpt,created,updated,codename,published,draft)
-                VALUES (?,?,?,now(),now(),?,now(),?)`,
-                post.title,
-                post.body,
-                post.excerpt || post.body.substring(0,500),
-                slugify(post.title,{lower:true}),
-                post.draft
+            try {
+                // insert
+                let createResult = await conn.query(
+                    `INSERT INTO content (title,body,excerpt,created,updated,codename,published,draft)
+                    VALUES (?,?,?,now(),now(),?,now(),?)`,
+                    [
+                        post.title,
+                        post.body,
+                        post.excerpt || post.body.substring(0,500),
+                        post.codename || slugify(post.title),
+                        post.draft
+                    ]
                 )
-            console.log(result)
-            return respond(200,result)
+                let postResult = await conn.query(`SELECT * FROM content WHERE id = ?`,[createResult.insertId])
+                return respond(200,{
+                    action: "created",
+                    post: postResult
+                })
+            } catch (e) {
+                console.log(e)
+                return respond(500,e)
+            }
         })
     }
 
