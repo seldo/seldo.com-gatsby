@@ -1,12 +1,24 @@
-import React, {useState,useEffect} from "react"
+import React, {useState,useReducer,useEffect} from "react"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
+
+const reducer = (state, {field,value}) => {
+  return {
+    ...state,
+    [field]: value
+  }
+}
 
 const AdminPage = ({pageContext}) => {
 
   const [user, setUser] = useState(false)
   const [postList, setPostList] = useState([])
-  const [post,setPost] = useState({})
+  const [post,setPost] = useReducer(reducer,{
+    title: '',
+    codename: '',
+    body: ''
+  })
+  const [originalCodename,setOriginalCodename] = useState(false)
 
   const fetchUserData = async () => {
     let uRes = await fetch("/.netlify/functions/read_userdata")
@@ -24,7 +36,13 @@ const AdminPage = ({pageContext}) => {
   const selectPost = async (codename) => {
     let res = await fetch(`/.netlify/functions/get_post?codename=${codename}`)
     let json = await res.json()
-    setPost(json)
+    for(let f in json) {
+      setPost({
+        field: f,
+        value: json[f]
+      })
+    }
+    setOriginalCodename(json.codename)
   }
 
   const createOrUpdatePost = async (event,draft) => {
@@ -33,7 +51,9 @@ const AdminPage = ({pageContext}) => {
       {
         method: "POST",
         body: JSON.stringify({
-          ...post
+          ...post,
+          draft,
+          originalCodename
         })
       }
     )
@@ -42,15 +62,23 @@ const AdminPage = ({pageContext}) => {
     console.log(json)
   }
 
+  const handleChange = (event) => {
+    setPost({      
+      field: event.target.name,
+      value: event.target.value
+    })
+  }
+
   return (  
     <Layout>
       <SEO title="Manage posts" />
       { user.username ? (
         <>
           <div className="postForm">
-            <p>Title: <input type="text" name="title" value={post.title} /></p>
-            <p>Slug: <input type="text" name="codename" value={post.codename} /></p>
-            <p><textarea name="body" value={post.body} /></p>
+            <p>Title: <input type="text" name="title" value={post.title} onChange={handleChange} /></p>
+            <p>Slug: <input type="text" name="codename" value={post.codename} onChange={handleChange} /></p>
+            <input type="hidden" name="original_codename" value={originalCodename} />
+            <p><textarea name="body" value={post.body} onChange={handleChange} /></p>
             <p><button onClick={(e) => {createOrUpdatePost(e,true)}}>Publish</button></p>
             <p><button onClick={(e) => {createOrUpdatePost(e,false)}}>Save draft</button></p>
           </div>
