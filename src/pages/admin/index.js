@@ -1,19 +1,12 @@
-import React, {useState,useReducer,useEffect} from "react"
+import React, {useState,useEffect} from "react"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
-
-const reducer = (state, {field,value}) => {
-  return {
-    ...state,
-    [field]: value
-  }
-}
 
 const AdminPage = ({pageContext}) => {
 
   const [user, setUser] = useState(false)
   const [postList, setPostList] = useState([])
-  const [post,setPost] = useReducer(reducer,{
+  const [post,setPost] = useState({
     title: '',
     codename: '',
     body: ''
@@ -36,12 +29,7 @@ const AdminPage = ({pageContext}) => {
   const selectPost = async (codename) => {
     let res = await fetch(`/.netlify/functions/get_post?codename=${codename}`)
     let json = await res.json()
-    for(let f in json) {
-      setPost({
-        field: f,
-        value: json[f]
-      })
-    }
+    setPost(json)
     setOriginalCodename(json.codename)
   }
 
@@ -64,8 +52,8 @@ const AdminPage = ({pageContext}) => {
 
   const handleChange = (event) => {
     setPost({      
-      field: event.target.name,
-      value: event.target.value
+      ...post,
+      [event.target.name]: event.target.value
     })
   }
 
