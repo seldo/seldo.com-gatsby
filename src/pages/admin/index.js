@@ -15,17 +15,21 @@ const AdminPage = ({pageContext}) => {
   let [postResult,setPostResult] = useState('')
   const [originalCodename,setOriginalCodename] = useState(false)
 
-  const fetchUserData = async () => {
-    let uRes = await fetch("/.netlify/functions/read_userdata")
-    let uJson = await uRes.json()
-    setUser(uJson)
+  const updatePostList = async () => {
     let pRes = await fetch("/.netlify/functions/list_posts")
     let pJson = await pRes.json()
     setPostList(pJson.rows)
   }
+
+  const fetchUserData = async () => {
+    let uRes = await fetch("/.netlify/functions/read_userdata")
+    let uJson = await uRes.json()
+    setUser(uJson)
+  }
   
   useEffect(() => {
     fetchUserData()
+    updatePostList()
   }, [])    
 
   const selectPost = async (codename) => {
@@ -33,6 +37,38 @@ const AdminPage = ({pageContext}) => {
     let json = await res.json()
     setPost(json)
     setOriginalCodename(json.codename)
+  }
+
+  const deletePost = async (event,draft) => {
+    if (post.id) {
+      let res = await fetch(
+        `/.netlify/functions/delete_post`,
+        {
+          method: "POST",
+          body: JSON.stringify(post)
+        }
+      )
+      if (res.status === 200) {
+        let result = await res.json()
+        if (result.action === "deleted") {
+          postResult = "Post deleted."
+        } else {
+          postResult = "Something happend but I dunno what?"
+        }
+        // this completely resets the editor because no spread "...post"
+        post = {
+          title: '',
+          codename: '',
+          body: ''
+        }        
+      }
+    } else {
+      postResult = "No post selected to delete"
+    }
+    setPost(post)
+    setOriginalCodename(false)
+    setPostResult(postResult)
+    updatePostList()
   }
 
   const createOrUpdatePost = async (event,draft) => {
@@ -62,6 +98,7 @@ const AdminPage = ({pageContext}) => {
     setPost(post)
     setOriginalCodename(post.codename)
     setPostResult(postResult)
+    updatePostList()
   }
 
   const handleChange = (event) => {
@@ -89,6 +126,7 @@ const AdminPage = ({pageContext}) => {
             <p><textarea name="body" value={post.body} onChange={handleChange} /></p>
             <p><button onClick={(e) => {createOrUpdatePost(e,true)}}>Save draft</button></p>
             <p><button onClick={(e) => {createOrUpdatePost(e,false)}}>Publish</button></p>
+            <p><button onClick={(e) => {deletePost(e)}} disabled={post.id ? false : true}>Delete</button></p>
           </div>
           <div className="postList">
             <ul>
