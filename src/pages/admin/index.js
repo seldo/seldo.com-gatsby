@@ -16,6 +16,7 @@ const AdminPage = ({pageContext}) => {
   })
   let [postResult,setPostResult] = useState('')
   let [originalCodename,setOriginalCodename] = useState(false)
+  let [previewCount,setPreviewCount] = useState(0)
 
   const updatePostList = async () => {
     let pRes = await fetch("/.netlify/functions/list_posts")
@@ -39,9 +40,21 @@ const AdminPage = ({pageContext}) => {
     let json = await res.json()
     setPost(json)
     setOriginalCodename(json.codename)
+    setPostResult(false)
   }
 
-  const deletePost = async (event,draft) => {
+  const clearEditor = async (event) => {
+    setPost({
+      id: '',
+      title: '',
+      codename: '',
+      body: ''
+    })
+    setOriginalCodename(false)
+    setPostResult(false)
+  }
+
+  const deletePost = async (event) => {
     if (post.id) {
       let res = await fetch(
         `/.netlify/functions/delete_post`,
@@ -59,6 +72,7 @@ const AdminPage = ({pageContext}) => {
         }
         // this completely resets the editor because no spread "...post"
         post = {
+          id: '',
           title: '',
           codename: '',
           body: ''
@@ -86,7 +100,6 @@ const AdminPage = ({pageContext}) => {
       }
     )
     if (res.status === 200) {
-      // TODO: display a preview
       let result = await res.json()
       if (result.action === "created") {
         postResult = "New post created!"
@@ -96,11 +109,17 @@ const AdminPage = ({pageContext}) => {
         postResult = "Something good happend but I dunno what?"
       }
       post = result.post
+    } else {
+      let result = await res.json()
+      if (result && result.error) {
+        postResult = result.error
+      }
     }
     setPost(post)
     setOriginalCodename(post.codename)
     setPostResult(postResult)
     updatePostList()
+    setPreviewCount(previewCount+1)
   }
 
   const handleChange = (event) => {
@@ -119,9 +138,13 @@ const AdminPage = ({pageContext}) => {
       <SEO title="Manage posts" />
       { user.username ? (
         <>
+          { postResult ? (
+            <div className="postResult">{postResult}</div>
+          ) : (
+            <></>
+          )}
           <div className="editingArea">
             <div className="postForm">
-              <div className="postResult">{postResult}</div>
               <input type="hidden" name="id" value={post.id} />
               <p>Title: <input type="text" name="title" value={post.title} onChange={handleChange} /></p>
               <p>Slug: <input type="text" name="codename" value={post.codename} onChange={handleChange} /></p>
@@ -129,24 +152,26 @@ const AdminPage = ({pageContext}) => {
               <p><textarea name="body" value={post.body} onChange={handleChange} /></p>
               <div className="controls">
                 <button id="saveBtn" onClick={(e) => {createOrUpdatePost(e,true)}}>Save draft</button>
-                <button onClick={(e) => {createOrUpdatePost(e,false)}}>Publish</button>
-                <button onClick={(e) => {deletePost(e)}} disabled={post.id ? false : true}>Delete</button>
+                <button id="publishBtn" onClick={(e) => {createOrUpdatePost(e,false)}}>Publish</button>
+                <button id="deleteBtn" onClick={(e) => {deletePost(e)}} disabled={post.id ? false : true}>Delete</button>
+                <button id="clearBtn" onClick={(e) => {clearEditor(e)}} disabled={post.id ? false : true}>New post</button>
               </div>
             </div>
             { originalCodename ? (
               <div className="preview">
-                <iframe title="preview" src={`/admin/preview?codename=${originalCodename}`} />
+                <iframe title="preview" src={`/admin/preview?codename=${originalCodename}&previewCount=${previewCount}`} />
               </div>
             ) : (
               <></>
             )}
           </div>
           <div className="postList">
+            <h2>Recent posts</h2>
             <ul>
             {
               postList.map( (post) => {
                 return (
-                  <li key={post.codename}><button onClick={ () => {selectPost(post.codename)}}>{post.title}</button></li>
+                  <li key={post.codename}><a href={post.codename} onClick={ (e) => {selectPost(post.codename);e.preventDefault()}}>{post.title}</a></li>
                 )
               })
             }

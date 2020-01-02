@@ -38,20 +38,24 @@ const action = async (event,user) => {
                         post.id
                      ]
                 )
-                console.log(updateResult)
                 let postResult = await conn.query(`SELECT * FROM content WHERE id = ?`,[post.id])                
                 return respond(200,{
                     action: "updated",
-                    post: postResult
+                    post: postResult[0]
                 })
             } catch (e) {
                 console.log(e)
-                return respond(500,e)
+                return respond(500,e.toString())
             }
         })        
     } else {
         return await dbConn( async (conn) => {
             try {
+                if (!post.codename) {
+                    return respond(400,{
+                        error: "Post must at least have a slug"
+                    })
+                }
                 // insert
                 let createResult = await conn.query(
                     `INSERT INTO content (title,body,excerpt,created,updated,codename,published,draft)
@@ -67,11 +71,11 @@ const action = async (event,user) => {
                 let postResult = await conn.query(`SELECT * FROM content WHERE id = ?`,[createResult.insertId])
                 return respond(200,{
                     action: "created",
-                    post: postResult
+                    post: postResult[0]
                 })
             } catch (e) {
                 console.log(e)
-                return respond(500,e)
+                return respond(500,e.toString())
             }
         })
     }

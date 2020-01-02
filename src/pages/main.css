@@ -1,6 +1,7 @@
 .editingArea {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .editingArea .postForm {
     flex-grow: 1;
@@ -9,6 +10,7 @@
 .editingArea .preview {
     margin-left: -2em;
     flex-grow: 1;
+    min-width: 20em;
 }
 .postForm input[name=title] {
     width: 100%;
@@ -25,10 +27,35 @@
     flex-direction: row;
     justify-content: space-around;
 }
-.postForm .controls button {
+#saveBtn {
+    background-color: rgb(0,0,255,0.2);
+}
+#publishBtn {
+    background-color: rgb(0,255,0,0.2);
+}
+#deleteBtn {
+    background-color: rgb(255,0,0,0.2);
+}
+#clearBtn {
+    background-color: rgb(0,0,0,0.2);
+}
+.postResult {
+    padding: 0.3em;
+    background-color: rgb(0,200,0,0.2);
+    margin-bottom: 1em;
 }
 .preview iframe {
     width: 100%;
     min-height: 30em;
     height: 100%;
+}
+.postList {
+    margin-top: 2em;
+}
+.postList ul {
+    margin-left: 0px;
+    column-count: 2;
+}
+.postList ul li {
+    list-style-type: none;
 }
