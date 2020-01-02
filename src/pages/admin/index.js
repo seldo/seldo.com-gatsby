@@ -177,6 +177,12 @@ const AdminPage = ({pageContext}) => {
             }
             </ul>
           </div>
+          <div>
+            <form>
+              <input id="find_codename" />
+              <button onClick={ (e) => { e.preventDefault(); selectPost(document.getElementById('find_codename').value) }}>Find</button>
+            </form>            
+          </div>
         </>
       ) : (
         <>

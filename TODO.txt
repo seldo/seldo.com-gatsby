@@ -2,4 +2,3 @@
 - get rid of the unrelated tweet lambdas
 - refine respond() so the oauth things can use it
 - find posts by codename
-- change codename when editing
