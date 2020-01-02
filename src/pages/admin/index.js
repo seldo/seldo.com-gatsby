@@ -2,18 +2,20 @@ import React, {useState,useEffect} from "react"
 import Layout from "../../components/layout"
 import SEO from "../../components/seo"
 import slugify from "@sindresorhus/slugify"
+import "../main.css"
 
 const AdminPage = ({pageContext}) => {
 
-  const [user, setUser] = useState(false)
-  const [postList, setPostList] = useState([])
+  let [user, setUser] = useState(false)
+  let [postList, setPostList] = useState([])
   let [post,setPost] = useState({
+    id: '',
     title: '',
     codename: '',
     body: ''
   })
   let [postResult,setPostResult] = useState('')
-  const [originalCodename,setOriginalCodename] = useState(false)
+  let [originalCodename,setOriginalCodename] = useState(false)
 
   const updatePostList = async () => {
     let pRes = await fetch("/.netlify/functions/list_posts")
@@ -31,7 +33,7 @@ const AdminPage = ({pageContext}) => {
     fetchUserData()
     updatePostList()
   }, [])    
-
+  
   const selectPost = async (codename) => {
     let res = await fetch(`/.netlify/functions/get_post?codename=${codename}`)
     let json = await res.json()
@@ -117,16 +119,27 @@ const AdminPage = ({pageContext}) => {
       <SEO title="Manage posts" />
       { user.username ? (
         <>
-          <div className="postForm">
-            <div className="postResult">{postResult}</div>
-            <input type="hidden" name="id" value={post.id} />
-            <p>Title: <input type="text" name="title" value={post.title} onChange={handleChange} /></p>
-            <p>Slug: <input type="text" name="codename" value={post.codename} onChange={handleChange} /></p>
-            <input type="hidden" name="original_codename" value={originalCodename} />
-            <p><textarea name="body" value={post.body} onChange={handleChange} /></p>
-            <p><button onClick={(e) => {createOrUpdatePost(e,true)}}>Save draft</button></p>
-            <p><button onClick={(e) => {createOrUpdatePost(e,false)}}>Publish</button></p>
-            <p><button onClick={(e) => {deletePost(e)}} disabled={post.id ? false : true}>Delete</button></p>
+          <div className="editingArea">
+            <div className="postForm">
+              <div className="postResult">{postResult}</div>
+              <input type="hidden" name="id" value={post.id} />
+              <p>Title: <input type="text" name="title" value={post.title} onChange={handleChange} /></p>
+              <p>Slug: <input type="text" name="codename" value={post.codename} onChange={handleChange} /></p>
+              <input type="hidden" name="original_codename" value={originalCodename} />
+              <p><textarea name="body" value={post.body} onChange={handleChange} /></p>
+              <div className="controls">
+                <button id="saveBtn" onClick={(e) => {createOrUpdatePost(e,true)}}>Save draft</button>
+                <button onClick={(e) => {createOrUpdatePost(e,false)}}>Publish</button>
+                <button onClick={(e) => {deletePost(e)}} disabled={post.id ? false : true}>Delete</button>
+              </div>
+            </div>
+            { originalCodename ? (
+              <div className="preview">
+                <iframe title="preview" src={`/admin/preview?codename=${originalCodename}`} />
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
           <div className="postList">
             <ul>
