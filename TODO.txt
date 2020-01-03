@@ -1,9 +1,16 @@
+# pre-launch
+- make front page pretty
 - build all pages based on data
-- get rid of the unrelated tweet lambdas
+- make post pages pretty
+- archive pages
+- redirects from old site
+
+# post-launch
+- image uploads to S3 in admin
 - refine respond() so the oauth things can use it
-- find posts by codename
-
-
+- inter-post navigation
+- related posts
+- restore tags
 
 Typeface
 P22 Underground Heavy, with a customized S
