@@ -23,7 +23,7 @@ const Layout = ({ children }) => {
         <main>{children}</main>
       </div>
       <footer>
-        <div>© {new Date().getFullYear()} Laurie Voss.</div>        
+        <div>© {new Date().getFullYear()} Laurie Voss. <a href="/about">About me</a>.</div>        
       </footer>
     </>
   )
