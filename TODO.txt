@@ -1,12 +1,13 @@
 # pre-launch
-- make front page pretty
 - build all pages based on data
 - make post pages pretty
 - archive pages
 - redirects from old site
 
 # post-launch
+- new post should trigger webhook at https://api.netlify.com/build_hooks/5e0fb47a0a860fcbe6e9ef85
 - image uploads to S3 in admin
+- hero images in posts
 - refine respond() so the oauth things can use it
 - inter-post navigation
 - related posts

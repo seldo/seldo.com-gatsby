@@ -2,4 +2,6 @@ const makeLink = (codename) => {
     return `/posts/${codename}`
 }
 
-export { makeLink }
+module.exports = {
+    makeLink
+}

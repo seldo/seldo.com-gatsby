@@ -46,40 +46,14 @@ footer {
     padding: 2em;
     background: rgb(175,207,236);
     background: linear-gradient(0deg, rgba(175,207,236,1) 0%, rgba(120,176,225,1) 100%);     
-    color: #666;
+    color: #fff;
 }
 footer a {
-    text-decoration: none;
+    color: #fff;
 }
 
 /* front page */
 .frontPagePost {
-    max-width: 60%;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #fff;
-    padding: 2em 3em;
-    border-radius: 2px;
-}
-@media only screen and (max-width: 600px) {
-    .frontPagePost {
-        padding: 1em 2em;
-    }
-}
-@media only screen and (max-width: 800px) {
-    .frontPagePost {
-        max-width: 80%;
-    }
-}
-@media only screen and (max-width: 600px) {
-    .frontPagePost {
-        max-width: 90%;
-    }
-}
-@media only screen and (max-width: 500px) {
-    .frontPagePost {
-        max-width: 100%;
-    }
 }
 .postSeparator {
     margin-top: 3em;
@@ -89,7 +63,35 @@ footer a {
     height: 100px;
     width: 100%;
 }
-/* any individual post */
+/* any individual post, on home or post page */
+.singlePost {
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    padding: 2em 3em;
+    border-radius: 2px;
+}
+@media only screen and (max-width: 600px) {
+    .singlePost {
+        padding: 1em 2em;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .singlePost {
+        max-width: 80%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .singlePost {
+        max-width: 90%;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .singlePost {
+        max-width: 100%;
+    }
+}
 .singlePost h1 a {
     text-decoration: none;
     color: black;
@@ -106,6 +108,17 @@ footer a {
     top: 0.5em;
     font-size: 60%;
     color: #888;
+}
+/* individual post page */
+.postPage {    
+}
+.postEnd {
+    text-align: center;
+}
+.postEnd .alpaca {
+    margin-top: 2em;
+    height: 100px;
+    margin-bottom: 2em;
 }
 /* admin pages */
 .editingArea {

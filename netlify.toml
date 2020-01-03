@@ -7,3 +7,8 @@
   from = "/pictures/*"
   to = "https://seldo-dot-com-media.s3-us-west-1.amazonaws.com/pictures/:splat"
   status = 301
+
+[[redirects]]
+  from = "/downloads/*"
+  to = "https://seldo-dot-com-media.s3-us-west-1.amazonaws.com/downloads/:splat"
+  status = 301  
