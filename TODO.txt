@@ -1,6 +1,4 @@
 # pre-launch
-- build all pages based on data
-- make post pages pretty
 - archive pages
 - redirects from old site
 
