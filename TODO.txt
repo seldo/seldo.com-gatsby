@@ -2,3 +2,24 @@
 - get rid of the unrelated tweet lambdas
 - refine respond() so the oauth things can use it
 - find posts by codename
+
+
+
+Typeface
+P22 Underground Heavy, with a customized S
+(Century Gothic, Futura, Helvetica, Arial fall-back)
+
+Pairing recommendations
+Lato for body copy
+(Fira Sans, Helvetica, Arial fall-back)
+
+Hex values
+Blue: #64b5e3
+Off-black: #2b252c
+Sun Gold: #ffc372
+Brown: #b55a4d
+Red: #ff4556
+Orange: #ff9a55
+Yellow: #ffe97a
+Green: #73e987
+Violet: #6460e3

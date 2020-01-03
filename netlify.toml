@@ -2,3 +2,8 @@
   from = "/login"
   to = "/.netlify/functions/start-oauth"
   status = 302
+
+[[redirects]]
+  from = "/pictures/*"
+  to = "https://seldo-dot-com-media.s3-us-west-1.amazonaws.com/pictures/:splat"
+  status = 301
