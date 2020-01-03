@@ -15,5 +15,28 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Lato`,
+            subsets: [`latin`],
+          },
+          {
+            family: `Fira Sans`,
+            subsets: [`latin`],
+          },
+        ],
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+          rule: {
+            include: `${__dirname}/src/images/logos/svg/`
+          }
+      }
+    },
   ],
 }

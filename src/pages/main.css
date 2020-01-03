@@ -1,8 +1,14 @@
 body {
-
+    font-family: "Lato","Fira Sans","Helvetica","Arial"
 }
 h1,h2,h3,h4,h5,h6 {
     font-family: "Century Gothic","Futura","Helvetica","Arial"
+}
+.headerLogo {
+    width: 100%;
+    height: 200px;
+    background-color: #78B0E1;
+    padding: 30px 70px;
 }
 .editingArea {
     display: flex;
