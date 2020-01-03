@@ -11,13 +11,11 @@ const PreviewPage = ({query}) => {
     selectPost('becoming_american')
   }, [])
 
+  /* scripts don't run in preview because they come in on innerHTML so have to reactive them */
   useEffect(() => {
     if (post.id) {
-      console.log("Running scripts")
       let scriptTags = document.querySelectorAll('#dangerousHTML script')
-      console.log(scriptTags)
       for(let script of scriptTags) {
-        console.log(script)
         let s = document.createElement('script')
         s.type = 'text/javascript'
         if (script.src) {
