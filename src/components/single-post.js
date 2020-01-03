@@ -1,9 +1,14 @@
 import React from "react"
+import { makeLink } from "../lib/helpers"
 
-const SinglePost = ({ post }) => {
+const SinglePost = ({ post, permaLink }) => {
   return (
     <div className="singlePost">
-      <h1>{post.title}</h1>
+      { permaLink ? (
+        <h1><a href={makeLink(post.codename)}>{post.title}</a></h1>
+      ) : (
+        <h1>{post.title}</h1>
+      )}
       <div dangerouslySetInnerHTML={{__html: post.body}}></div>
     </div>
   )
