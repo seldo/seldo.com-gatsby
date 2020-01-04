@@ -1,9 +1,7 @@
 # pre-launch
-- about me
 - redirects from old site
 - any 404 to previous site
 - google analytics
-- posts need a date somewhere
 
 # post-launch
 - recent posts list
