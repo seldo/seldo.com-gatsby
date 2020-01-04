@@ -1,5 +1,5 @@
 # pre-launch
-- archive pages
+- about me
 - redirects from old site
 - any 404 to previous site
 - google analytics

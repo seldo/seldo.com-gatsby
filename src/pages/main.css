@@ -78,6 +78,11 @@ footer a {
     padding: 2em 3em;
     border-radius: 2px;
 }
+@media only screen and (min-width: 1000px) {
+    .singlePost {
+        width: 40em;
+    }
+}
 @media only screen and (max-width: 600px) {
     .singlePost {
         padding: 1em 2em;
