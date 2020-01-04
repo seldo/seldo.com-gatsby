@@ -121,7 +121,6 @@ footer a {
     font-size: 60%;
     color: #888;
 }
-/* individual post page */
 .postEnd {
     text-align: center;
 }
@@ -132,8 +131,9 @@ footer a {
 }
 /* archive page */
 .archivePage {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin: 5%;
+    padding: 5%;
+    background-color: #fff;
 }
 .archivePage .archiveYears ul {
     column-count: 3;

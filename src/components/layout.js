@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
       </div>
       <footer>
         <div>© {new Date().getFullYear()} Laurie Voss.</div>
-        <div><a href="/about">About me</a> | <a href="/archive">Archive</a></div>        
+        <div><a href="/">Home</a> | <a href="/about">About me</a> | <a href="/archive">Archive</a></div>        
       </footer>
     </>
   )

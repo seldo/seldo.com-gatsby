@@ -2,8 +2,7 @@ import React from "react"
 import Layout from "./layout"
 import SinglePost from "./single-post"
 import SEO from "../components/seo"
-
-import Floof from "../images/processed/floof-blue.svg"
+import PostEnd from "../components/post-end"
 
 const PostPage = ({ pageContext }) => {
   let post = pageContext.post
@@ -11,7 +10,7 @@ const PostPage = ({ pageContext }) => {
     <SEO title={post.title} />
     <div class="postPage">
       <SinglePost post={post} permaLink={false} />
-      <div className="postEnd"><Floof className="alpaca" /></div>
+      <PostEnd />
     </div>    
   </Layout>
 }

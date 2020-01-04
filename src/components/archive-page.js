@@ -3,6 +3,7 @@ import Layout from "./layout"
 import SEO from "../components/seo"
 import moment from "moment"
 import { makeLink } from "../lib/helpers"
+import PostEnd from "../components/post-end"
 
 const ArchivePage = ({ pageContext }) => {
   let posts = pageContext.posts
@@ -29,7 +30,8 @@ const ArchivePage = ({ pageContext }) => {
     return <li><a href={`#archive${year}`}>{year}</a></li>
   })
   let yearsSection = <section className="archiveYears">
-    <h1><a name="yearIndex">Jump to year</a></h1>
+    <h1><a name="yearIndex">Archives</a></h1>
+    <p>Pick a year to jump to, or just scroll.</p>
     <ul>
     { yearLinks }
     </ul>
@@ -63,6 +65,7 @@ const ArchivePage = ({ pageContext }) => {
     <SEO title="Archives" />
     <div className="archivePage">
       { archives }
+      <PostEnd />
     </div>    
   </Layout>
 }

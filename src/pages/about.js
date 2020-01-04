@@ -2,6 +2,7 @@ import React from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import Self from "../components/images/self"
+import PostEnd from "../components/post-end"
 
 const AboutPage = () => (
   <Layout>
@@ -34,8 +35,9 @@ const AboutPage = () => (
       <h2>Contacting me</h2>
       <p>If you'd like to contact me, the fastest way is <a href="https://twitter.com/seldo">@seldo</a> on Twitter. I also exist on <a href="https://www.linkedin.com/in/seldo/">LinkedIn</a> and my email is not hard to guess.</p>
       <p>If for some reason you need it, my <a href="/downloads/resume.2019.10.public.pdf">resume</a> is available.</p>
+
+      <PostEnd />
       
-      <p>[<a href="/">Home</a>]</p>
     </div>
   </Layout>
 )
