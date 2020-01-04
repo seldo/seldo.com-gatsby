@@ -12,3 +12,28 @@
   from = "/downloads/*"
   to = "https://seldo-dot-com-media.s3-us-west-1.amazonaws.com/downloads/:splat"
   status = 301  
+
+[[redirects]]
+  from = "/weblog/calendar"
+  to = "/archive"
+  status = 301
+
+[[redirects]]
+  from = "/weblog/:year/:month/:day/:slug"
+  to = "/posts/:slug"
+  status = 301
+
+[[redirects]]
+  from = "/weblog/:year/:month/:day"
+  to = "/archive"
+  status = 301
+
+[[redirects]]
+  from = "/weblog/:year/:month"
+  to = "/archive"
+  status = 301
+
+[[redirects]]
+  from = "/weblog/:year"
+  to = "/archive"
+  status = 301
