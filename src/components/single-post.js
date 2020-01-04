@@ -3,7 +3,7 @@ import { makeLink } from "../lib/helpers"
 
 const SinglePost = ({ post, permaLink }) => {
   return (
-    <div className="singlePost">
+    <div className="singlePost flexyColumn">
       { permaLink ? (
         <h1><a href={makeLink(post.codename)}>{post.title}</a></h1>
       ) : (

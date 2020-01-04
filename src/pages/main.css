@@ -57,7 +57,37 @@ footer {
 footer a {
     color: #fff;
 }
-
+.flexyColumn {
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2em 3em;
+}
+@media only screen and (min-width: 1000px) {
+    .flexyColumn {
+        width: 40em;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .flexyColumn {
+        padding: 1em 2em;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .flexyColumn {
+        max-width: 80%;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .flexyColumn {
+        max-width: 90%;
+    }
+}
+@media only screen and (max-width: 500px) {
+    .flexyColumn {
+        max-width: 100%;
+    }
+}
 /* front page */
 .frontPagePost {
 }
@@ -71,37 +101,8 @@ footer a {
 }
 /* any individual post, on home or post page */
 .singlePost {
-    max-width: 60%;
-    margin-left: auto;
-    margin-right: auto;
     background-color: #fff;
-    padding: 2em 3em;
     border-radius: 2px;
-}
-@media only screen and (min-width: 1000px) {
-    .singlePost {
-        width: 40em;
-    }
-}
-@media only screen and (max-width: 600px) {
-    .singlePost {
-        padding: 1em 2em;
-    }
-}
-@media only screen and (max-width: 800px) {
-    .singlePost {
-        max-width: 80%;
-    }
-}
-@media only screen and (max-width: 600px) {
-    .singlePost {
-        max-width: 90%;
-    }
-}
-@media only screen and (max-width: 500px) {
-    .singlePost {
-        max-width: 100%;
-    }
 }
 .singlePost h1 a {
     text-decoration: none;
@@ -136,6 +137,19 @@ footer a {
 }
 .archivePage .archiveYears ul {
     column-count: 3;
+}
+/* about me page */
+.aboutPage {
+    background-color: #fff;
+}
+.aboutPage .selfie {
+    display: inline-box;
+    float: right;
+    width: 50%;
+    margin-left: 1em;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+    overflow: hidden;
 }
 /* admin pages */
 .editingArea {
