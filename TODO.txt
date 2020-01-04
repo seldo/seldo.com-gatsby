@@ -4,9 +4,9 @@
 - google analytics
 
 # post-launch
-- recent posts list in more places
 - new post should trigger webhook at https://api.netlify.com/build_hooks/5e0fb47a0a860fcbe6e9ef85
 - ugh RSS?
+- recent posts list in more places
 - image uploads to S3 in admin
 - hero images in posts
 - refine respond() so the oauth things can use it
@@ -14,6 +14,8 @@
 - related posts
 - restore tags
 - editor should indicate drafts
+- how do we make netlify not rebuild the world on a new post?
+- automatically save drafts periodically
 
 Typeface
 P22 Underground Heavy, with a customized S
