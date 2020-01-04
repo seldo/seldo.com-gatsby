@@ -10,7 +10,7 @@ const IndexPage = ({pageContext}) => {
     <Layout>
       <SEO title="Seldo.com" />
       {
-        pageContext.posts.map( (post) => {
+        pageContext.recentPosts.map( (post) => {
           return (
             <>
               <section className="frontPagePost">

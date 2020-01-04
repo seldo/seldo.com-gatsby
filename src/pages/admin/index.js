@@ -177,10 +177,12 @@ const AdminPage = ({pageContext}) => {
             }
             </ul>
           </div>
-          <div>
+          <div class="searchPosts">
             <form>
-              <input id="find_codename" />
-              <button onClick={ (e) => { e.preventDefault(); selectPost(document.getElementById('find_codename').value) }}>Find</button>
+              <p>
+                Find post by slug: <input id="find_codename" />
+                <button onClick={ (e) => { e.preventDefault(); selectPost(document.getElementById('find_codename').value) }}>Find</button>
+              </p>
             </form>            
           </div>
         </>

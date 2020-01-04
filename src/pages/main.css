@@ -2,6 +2,9 @@
 body {
     font-family: "Lato","Fira Sans","Helvetica","Arial";
     background-color: #f9f9f9;
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 200px;
 }
 h1,h2,h3,h4,h5,h6 {
     font-family: "Century Gothic","Futura","Helvetica","Arial"
@@ -47,6 +50,9 @@ footer {
     background: rgb(175,207,236);
     background: linear-gradient(0deg, rgba(175,207,236,1) 0%, rgba(120,176,225,1) 100%);     
     color: #fff;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
 }
 footer a {
     color: #fff;
@@ -110,8 +116,6 @@ footer a {
     color: #888;
 }
 /* individual post page */
-.postPage {    
-}
 .postEnd {
     text-align: center;
 }
@@ -119,6 +123,14 @@ footer a {
     margin-top: 2em;
     height: 100px;
     margin-bottom: 2em;
+}
+/* archive page */
+.archivePage {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.archivePage .archiveYears ul {
+    column-count: 3;
 }
 /* admin pages */
 .editingArea {
@@ -128,7 +140,8 @@ footer a {
 }
 .editingArea .postForm {
     flex-grow: 1;
-    padding-right: 3em;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 .editingArea .preview {
     margin-left: -2em;
@@ -173,7 +186,7 @@ footer a {
     height: 100%;
 }
 .postList {
-    margin-top: 2em;
+    padding: 2em;
 }
 .postList ul {
     margin-left: 0px;
@@ -181,4 +194,7 @@ footer a {
 }
 .postList ul li {
     list-style-type: none;
+}
+.searchPosts {
+    text-align: center;
 }

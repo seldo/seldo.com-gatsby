@@ -1,9 +1,14 @@
 # pre-launch
 - archive pages
 - redirects from old site
+- any 404 to previous site
+- google analytics
+- posts need a date somewhere
 
 # post-launch
+- recent posts list
 - new post should trigger webhook at https://api.netlify.com/build_hooks/5e0fb47a0a860fcbe6e9ef85
+- ugh RSS?
 - image uploads to S3 in admin
 - hero images in posts
 - refine respond() so the oauth things can use it
