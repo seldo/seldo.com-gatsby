@@ -1,6 +1,4 @@
 # pre-launch
-- redirects from old site
-- any 404 to previous site
 - google analytics
 
 # post-launch

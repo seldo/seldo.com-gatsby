@@ -8,7 +8,7 @@ const IndexPage = ({pageContext}) => {
 
   return (  
     <Layout>
-      <SEO title="Seldo.com" />
+      <SEO title="" />
       <div className="hiddenLogin">
         <a href="/admin"></a>
       </div>
