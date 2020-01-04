@@ -10,7 +10,7 @@ const PostPage = ({ pageContext }) => {
     <SEO title={post.title} />
     <div class="postPage">
       <SinglePost post={post} permaLink={false} />
-      <PostEnd />
+      <PostEnd home={true} />
     </div>    
   </Layout>
 }

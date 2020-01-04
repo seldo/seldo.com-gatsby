@@ -31,7 +31,7 @@ const ArchivePage = ({ pageContext }) => {
   })
   let yearsSection = <section className="archiveYears">
     <h1><a name="yearIndex">Archives</a></h1>
-    <p>Pick a year to jump to, or just scroll.</p>
+    <p>{ posts.length } posts so far. Pick a year to jump to, or just scroll.</p>
     <ul>
     { yearLinks }
     </ul>

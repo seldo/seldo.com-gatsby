@@ -1,9 +1,13 @@
 import React from "react"
 import Floof from "../images/processed/floof-blue.svg"
 
-const PostEnd = () => {
+const PostEnd = ({home}) => {
   return <div className="postEnd">
-    <Floof className="alpaca" />
+    { home ? (
+      <a href="/"><Floof className="alpaca" /></a>
+    ) : (
+      <Floof className="alpaca" />
+    )}
   </div>
 }
 

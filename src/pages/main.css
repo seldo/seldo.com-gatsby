@@ -89,20 +89,26 @@ footer a {
     }
 }
 /* front page */
-.frontPagePost {
-}
-.postSeparator {
+.frontPage .postSeparator {
     margin-top: 3em;
     margin-bottom: 3em;
 }
-.postSeparator .alpaca {
+.frontPage .postSeparator .alpaca {
     height: 100px;
     width: 100%;
+}
+.frontPage .finalWord {
+    text-align: center;    
 }
 /* any individual post, on home or post page */
 .singlePost {
     background-color: #fff;
     border-radius: 2px;
+}
+.singlePost .postDate {
+    text-align: right;
+    font-size: 80%;
+    opacity: 0.8;
 }
 .singlePost h1 a {
     text-decoration: none;
@@ -121,6 +127,7 @@ footer a {
     font-size: 60%;
     color: #888;
 }
+/* used to neatly end many pages */
 .postEnd {
     text-align: center;
 }

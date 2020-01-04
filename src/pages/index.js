@@ -9,6 +9,7 @@ const IndexPage = ({pageContext}) => {
   return (  
     <Layout>
       <SEO title="Seldo.com" />
+      <div className="frontPage">
       {
         pageContext.recentPosts.map( (post) => {
           return (
@@ -21,6 +22,10 @@ const IndexPage = ({pageContext}) => {
           )
         })
       }
+      <div className="finalWord">
+        <p>More posts are available <a href="/archive/">in the archive</a>.</p>
+      </div>              
+      </div>
     </Layout>
   )
 }
