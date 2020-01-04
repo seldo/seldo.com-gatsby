@@ -4,7 +4,7 @@
 - google analytics
 
 # post-launch
-- recent posts list
+- recent posts list in more places
 - new post should trigger webhook at https://api.netlify.com/build_hooks/5e0fb47a0a860fcbe6e9ef85
 - ugh RSS?
 - image uploads to S3 in admin
@@ -13,6 +13,7 @@
 - inter-post navigation
 - related posts
 - restore tags
+- editor should indicate drafts
 
 Typeface
 P22 Underground Heavy, with a customized S

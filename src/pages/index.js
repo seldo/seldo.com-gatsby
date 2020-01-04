@@ -9,6 +9,9 @@ const IndexPage = ({pageContext}) => {
   return (  
     <Layout>
       <SEO title="Seldo.com" />
+      <div className="hiddenLogin">
+        <a href="/login"></a>
+      </div>
       <div className="frontPage">
       {
         pageContext.recentPosts.map( (post) => {

@@ -100,6 +100,17 @@ footer a {
 .frontPage .finalWord {
     text-align: center;    
 }
+/* laurie is too lazy to type */
+.hiddenLogin a {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #64b5e3;
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.2;
+}
 /* any individual post, on home or post page */
 .singlePost {
     background-color: #fff;
