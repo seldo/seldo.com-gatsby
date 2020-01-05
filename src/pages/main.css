@@ -89,6 +89,8 @@ footer a {
 /* front page */
 .frontPageHeader {
     min-height: 50vh;
+    /* this fixes a safari render bug */
+    border-bottom: 1px solid white;
 }
 .frontPageHeader h1 {
     padding-top: calc(20vh);

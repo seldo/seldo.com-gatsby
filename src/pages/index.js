@@ -10,14 +10,14 @@ const IndexPage = ({pageContext}) => {
   return (  
     <Layout showHeader={false}>
       <SEO title="" />
+      <div className="hiddenLogin">
+        <a href="/admin"><span>.</span></a>
+      </div>
       <HeaderImage className="frontPageHeader">
         <h1>
           <a href="/"><span>Seldo.com</span></a>
         </h1>
       </HeaderImage> 
-      <div className="hiddenLogin">
-        <a href="/admin"><span>.</span></a>
-      </div>
       <div className="frontPage">
         <div className="content">
           <div className="introduction">

@@ -19,7 +19,7 @@ const AboutPage = () => (
       <p>I enjoy writing and speaking; here are some of my favorites.</p>
 
       <ul>
-        <li>Stuff Everybody Knows About You (<a href="https://www.youtube.com/watch?v=JIJZnF_L5KI">part 1</a> and <a href="https://www.youtube.com/watch?v=4H8VTCSbYQg">part 2</a>), a marathon, 2-hour overview of professional web development given to graduates of Hack Reactor regularly since 2014.</li>
+        <li>Stuff Everybody Knows Except You (<a href="https://www.youtube.com/watch?v=JIJZnF_L5KI">part 1</a> and <a href="https://www.youtube.com/watch?v=4H8VTCSbYQg">part 2</a>), a marathon, 2-hour overview of professional web development given to graduates of Hack Reactor regularly since 2014.</li>
         <li><a href="https://www.youtube.com/watch?v=gChULw-uEjY">JavaScript - Who, What, Where, Why and Next</a> (JSConf EU Opening Keynote 2019).</li>
         <li><a href="https://slides.com/seldo/professional-javascript-2019">Professional JavaScript in 2019</a>  (FinJS London, New York, Stockholm 2019)</li>
         <li><a href="https://www.youtube.com/watch?v=mSQh0gcDXkc">npm and the Future of JavaScript</a> (JSConf US 2018)</li>
