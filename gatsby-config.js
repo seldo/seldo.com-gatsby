@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Seldo.com`,
-    description: `Personal site and blog of Laurie Voss, aka Seldo`,
+    description: `Personal site and blog of Laurie Voss, aka @seldo`,
     author: `@seldo`,
     staticHostname: process.env.BASE_HOSTNAME
   },

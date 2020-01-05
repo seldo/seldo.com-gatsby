@@ -12,7 +12,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Floof from "../images/logos/white/floof-blue.png"
 
 function SEO({ description, lang, meta, title }) {
-  const { site } = useStaticQuery(
+  const { site, images } = useStaticQuery(
     graphql`
       query {
         site {
@@ -22,10 +22,25 @@ function SEO({ description, lang, meta, title }) {
             author,
             staticHostname
           }
-        }
+        },
+        images: allFile(filter: {relativeDirectory: {eq: "processed/headers"}}, sort: {fields: relativePath, order: ASC}) {
+          edges {
+            node {
+              relativePath
+              relativeDirectory
+              childImageSharp {
+                bigHero: fluid(maxWidth: 1500) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }  
       }
     `
   )
+
+  let imgData = images.edges[Math.round(Math.random()*images.edges.length)]
 
   const metaDescription = description || site.siteMetadata.description
 
@@ -57,11 +72,11 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `twitter:image`,
-          content: site.siteMetadata.staticHostname + Floof
+          content: site.siteMetadata.staticHostname + imgData.node.childImageSharp.bigHero.src
         },
         {
           name: `twitter:card`,
-          content: `summary`,
+          content: `summary_large_image`,
         },
         {
           name: `twitter:creator`,
