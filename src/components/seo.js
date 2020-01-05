@@ -29,7 +29,7 @@ function SEO({ description, lang, meta, title }) {
               relativePath
               relativeDirectory
               childImageSharp {
-                twitter: fixed(width:2000,height:1000) {
+                twitter: fixed(width:1000,height:500) {
                   src
                 }
               }
@@ -75,11 +75,15 @@ function SEO({ description, lang, meta, title }) {
           content: site.siteMetadata.staticHostname + imgData.node.childImageSharp.twitter.src
         },
         {
+          property: `twitter:image:alt`,
+          content: `A beautiful photograph`
+        },
+        {
           name: `twitter:card`,
           content: `summary_large_image`,
         },
         {
-          name: `twitter:creator`,
+          name: `twitter:site`,
           content: site.siteMetadata.author,
         },
         {
