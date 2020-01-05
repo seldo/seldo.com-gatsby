@@ -5,7 +5,7 @@ import PostEnd from "../components/post-end"
 
 const Colophon = () => (
   <Layout>
-    <SEO title="Colophon" />
+    <SEO title="Colophon" description="How seldo.com is built and deployed." />
     <div className="colophon flexyColumn">
       <h1>About this site</h1>
       

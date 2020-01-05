@@ -6,7 +6,7 @@ import PostEnd from "../components/post-end"
 
 const AboutPage = () => (
   <Layout>
-    <SEO title="About me" />
+    <SEO title="About me" description="Some information about Laurie Voss" />
     <div className="aboutPage flexyColumn">
       <h1>Hello.</h1>
       
