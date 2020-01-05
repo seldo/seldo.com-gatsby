@@ -32,7 +32,7 @@ const HeaderImage = ({children,className,alt}) => {
     }
   `)
 
-  let [picIndex,setPicIndex] = useState(Math.round(Math.random()*data.allFile.edges.length))
+  let [picIndex,setPicIndex] = useState(Math.round(Math.random()*data.allFile.edges.length-1))
 
   const nextPic = () => {
       const total = data.allFile.edges.length
