@@ -1,7 +1,6 @@
 # pre-launch
 
 # post-launch
-- colophon
 - twitter preview cards
 - ugh RSS?
 - recent posts list in more places

@@ -107,6 +107,15 @@ footer a {
 .frontPageHeader h1 a span {
     margin-left: -9999px;
 }
+.frontPageHeader .advancePicture {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+.frontPageHeader .advancePicture button {
+    background: none;
+    border: none;
+}
 .frontPage .content {
     background-color: #fff;
     display: flex;

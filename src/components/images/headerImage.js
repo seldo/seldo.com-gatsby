@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import BackgroundImage from 'gatsby-background-image'
 
@@ -32,8 +32,19 @@ const HeaderImage = ({children,className,alt}) => {
     }
   `)
 
+  let [picIndex,setPicIndex] = useState(Math.round(Math.random()*data.allFile.edges.length))
+
+  const nextPic = () => {
+      const total = data.allFile.edges.length
+      let next = picIndex + 1
+      if (next >= total) {
+          next = 0
+      }
+      setPicIndex(next)
+  }
+
   // just pick one at random
-  let imgData = data.allFile.edges[Math.round(Math.random()*data.allFile.edges.length)]
+  let imgData = data.allFile.edges[picIndex]
 
   return (
     <BackgroundImage
@@ -43,6 +54,9 @@ const HeaderImage = ({children,className,alt}) => {
       backgroundColor={`#040e18`}
     >
         {children}
+        <div className="advancePicture">
+            <button onClick={nextPic}>📸</button>
+        </div>
     </BackgroundImage>
   )
 

@@ -33,7 +33,7 @@ const IndexPage = ({pageContext}) => {
             {
               pageContext.recentPosts.map( (post) => {
                 return (
-                  <li><a href={makeLink(post.codename)}>{post.title}</a></li>
+                  <li key={post.codename}><a href={makeLink(post.codename)}>{post.title}</a></li>
                 )
               })
             }
