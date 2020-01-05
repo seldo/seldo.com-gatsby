@@ -29,8 +29,8 @@ function SEO({ description, lang, meta, title }) {
               relativePath
               relativeDirectory
               childImageSharp {
-                bigHero: fluid(maxWidth: 1500) {
-                  ...GatsbyImageSharpFluid
+                twitter: fixed(width:2000,height:1000) {
+                  src
                 }
               }
             }
@@ -72,7 +72,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `twitter:image`,
-          content: site.siteMetadata.staticHostname + imgData.node.childImageSharp.bigHero.src
+          content: site.siteMetadata.staticHostname + imgData.node.childImageSharp.twitter.src
         },
         {
           name: `twitter:card`,
