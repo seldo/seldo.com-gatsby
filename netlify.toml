@@ -1,3 +1,11 @@
+[context.production]
+  [context.production.environment]
+    BASE_HOSTNAME = "https://seldo.com"
+
+[context.branch-deploy]
+  [context.branch-deploy.environment]
+    BASE_HOSTNAME = "https://staging--seldo.netlify.com/"
+
 [[redirects]]
   from = "/login"
   to = "/.netlify/functions/start-oauth"
