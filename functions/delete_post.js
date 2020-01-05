@@ -1,6 +1,7 @@
 const auth = require('./lib/auth')
 const dbConn = require('./lib/db')
 const respond = require('./lib/respond')
+const triggerRebuild = require('./lib/rebuild')
 
 const action = async (event,user) => {
 
@@ -18,6 +19,7 @@ const action = async (event,user) => {
                 `DELETE FROM content WHERE id = ?`,[post.id]
             )
             console.log(updateResult)
+            triggerRebuild(false)
             return respond(200,{
                 action: "deleted"
             })

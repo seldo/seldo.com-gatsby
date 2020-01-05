@@ -2,6 +2,7 @@ const auth = require('./lib/auth')
 const dbConn = require('./lib/db')
 const respond = require('./lib/respond')
 const slugify = require('slugify')
+const triggerRebuild = require('./lib/rebuild')
 
 const action = async (event,user) => {
 
@@ -39,6 +40,7 @@ const action = async (event,user) => {
                      ]
                 )
                 let postResult = await conn.query(`SELECT * FROM content WHERE id = ?`,[post.id])                
+                triggerRebuild(false) // update could be changing draft status so always rebuild
                 return respond(200,{
                     action: "updated",
                     post: postResult[0]
@@ -69,6 +71,7 @@ const action = async (event,user) => {
                     ]
                 )
                 let postResult = await conn.query(`SELECT * FROM content WHERE id = ?`,[createResult.insertId])
+                triggerRebuild(post.draft) // no need to rebuild for drafts
                 return respond(200,{
                     action: "created",
                     post: postResult[0]

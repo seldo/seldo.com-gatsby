@@ -1,7 +1,7 @@
 # pre-launch
 
 # post-launch
-- new post should trigger webhook at https://api.netlify.com/build_hooks/5e0fb47a0a860fcbe6e9ef85
+- twitter preview cards
 - ugh RSS?
 - recent posts list in more places
 - image uploads to S3 in admin
