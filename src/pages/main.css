@@ -160,6 +160,10 @@ footer a {
     width: 20px;
     height: 20px;
     opacity: 0.2;
+    z-index: 1;
+}
+.hiddenLogin a span {
+    margin-left: -9999px;
 }
 /* any individual post, on home or post page */
 .singlePost {

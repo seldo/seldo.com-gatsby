@@ -9,7 +9,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import Floof from "../images/logos/white/floof-blue.png"
 
 function SEO({ description, lang, meta, title }) {
   const { site, images } = useStaticQuery(
