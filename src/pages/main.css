@@ -210,6 +210,11 @@ footer a {
     border-radius: 10px;
     overflow: hidden;
 }
+/* colophon */
+.colophon {
+    background-color: #fff;
+    border-radius: 2px;
+}
 /* admin pages */
 .editingArea {
     display: flex;

@@ -1,7 +1,7 @@
 # pre-launch
 
 # post-launch
-- can it look nicer in some way
+- colophon
 - twitter preview cards
 - ugh RSS?
 - recent posts list in more places
