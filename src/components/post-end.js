@@ -1,5 +1,5 @@
 import React from "react"
-import Floof from "../images/processed/floof-blue.svg"
+import Floof from "../images/processed/floof-with-border.svg"
 
 const PostEnd = ({home}) => {
   return <div className="postEnd">

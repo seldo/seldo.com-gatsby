@@ -1,10 +1,11 @@
 /* all pages */
 body {
     font-family: "Lato","Fira Sans","Helvetica","Arial";
-    background-color: #f9f9f9;
+    background: rgb(175,207,236);
+    background: linear-gradient(0deg, rgba(175,207,236,1) 0%, rgba(120,176,225,1) 100%);     
     position: relative;
     min-height: 100vh;
-    padding-bottom: 200px;
+    padding-bottom: 100px;
 }
 h1,h2,h3,h4,h5,h6 {
     font-family: "Century Gothic","Futura","Helvetica","Arial"
@@ -15,8 +16,6 @@ h1,h2,h3,h4,h5,h6 {
 }
 .headerLogo {
     width: 100%;
-    background: rgb(175,207,236);
-    background: linear-gradient(180deg, rgba(175,207,236,1) 0%, rgba(120,176,225,1) 100%);    
     padding: 50px 30%;
     margin-bottom: 1em;
 }
@@ -48,17 +47,13 @@ h1,h2,h3,h4,h5,h6 {
 }
 footer {
     text-align: center;
-    min-height: 200px;
+    min-height: 100px;
     padding: 2em;
-    background: rgb(175,207,236);
-    background: linear-gradient(0deg, rgba(175,207,236,1) 0%, rgba(120,176,225,1) 100%);     
-    color: #fff;
     position: absolute;
     bottom: 0px;
     width: 100%;
 }
 footer a {
-    color: #fff;
 }
 .flexyColumn {
     max-width: 60%;
@@ -92,11 +87,52 @@ footer a {
     }
 }
 /* front page */
-.frontPage .postSeparator {
-    margin-top: 3em;
-    margin-bottom: 3em;
+.frontPageHeader {
+    min-height: 50vh;
 }
-.frontPage .postSeparator .alpaca {
+.frontPageHeader h1 {
+    padding-top: calc(20vh);
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.frontPageHeader h1 a {
+    display: block;
+    height: 10vh;
+    background-image: url('../images/logos/svg/knockout2.svg');
+    background-repeat: no-repeat;
+    background-position-x: center;
+}
+.frontPageHeader h1 a span {
+    margin-left: -9999px;
+}
+.frontPage .content {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.frontPage .content>div {
+    padding: 1em;
+}
+.frontPage .introduction {
+    flex-basis: 33%;
+    max-width: 20em;
+}
+.frontPage .recentPosts {
+    flex-basis: 66%;
+    max-width: 40em;
+}
+@media only screen and (max-width: 600px) {
+    .frontPage .introduction {
+        flex-basis: 100%;
+    }
+    .frontPage .recentPosts {
+        flex-basis: 100%;
+    }
+}
+.frontPage .finial svg {
+    margin-top: 1em;
     height: 100px;
     width: 100%;
 }
