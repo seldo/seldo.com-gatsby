@@ -3,6 +3,7 @@ module.exports = {
     title: `Seldo.com`,
     description: `Personal site and blog of Laurie Voss, aka Seldo`,
     author: `@seldo`,
+    staticHostname: process.env.BASE_HOSTNAME
   },
   plugins: [
     {

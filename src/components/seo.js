@@ -19,7 +19,8 @@ function SEO({ description, lang, meta, title }) {
           siteMetadata {
             title
             description
-            author
+            author,
+            staticHostname
           }
         }
       }
@@ -56,7 +57,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `twitter:image`,
-          content: Floof
+          content: site.siteMetadata.staticHostname + Floof
         },
         {
           name: `twitter:card`,
