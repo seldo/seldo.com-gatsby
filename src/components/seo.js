@@ -40,7 +40,7 @@ function SEO({ description, lang, meta, title }) {
     `
   )
 
-  let imgData = images.edges[Math.round(Math.random()*images.edges.length-1)]
+  let imgData = images.edges[Math.round(Math.random()*(images.edges.length-1))]
 
   const metaDescription = description || site.siteMetadata.description
 
