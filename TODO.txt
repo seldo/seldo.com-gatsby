@@ -1,6 +1,7 @@
 # pre-launch
 
 # post-launch
+- can it look nicer in some way
 - twitter preview cards
 - ugh RSS?
 - recent posts list in more places
@@ -11,7 +12,6 @@
 - related posts
 - restore tags
 - editor should indicate drafts
-- how do we make netlify not rebuild the world on a new post?
 - automatically save drafts periodically
 
 Typeface
