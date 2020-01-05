@@ -68,7 +68,7 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: easyTitle,
         },
         {
           name: `twitter:description`,
