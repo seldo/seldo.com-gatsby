@@ -1,7 +1,6 @@
 # pre-launch
 
 # post-launch
-- twitter preview cards
 - ugh RSS?
 - recent posts list in more places
 - image uploads to S3 in admin
@@ -12,6 +11,8 @@
 - restore tags
 - editor should indicate drafts
 - automatically save drafts periodically
+- super old blog links?
+- post images should be based on title hash to prevent rebuilds
 
 Typeface
 P22 Underground Heavy, with a customized S

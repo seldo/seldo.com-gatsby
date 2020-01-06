@@ -124,11 +124,11 @@ footer a {
     justify-content: space-evenly;
 }
 .frontPage .content>div {
-    padding: 1em;
+    padding: 1em 1.5em;
 }
 .frontPage .introduction {
     flex-basis: 33%;
-    max-width: 20em;
+    max-width: 22em;
 }
 .frontPage .recentPosts {
     flex-basis: 66%;
@@ -140,6 +140,7 @@ footer a {
     }
     .frontPage .recentPosts {
         flex-basis: 100%;
+        max-width: 22em;
     }
 }
 .frontPage .finial svg {
