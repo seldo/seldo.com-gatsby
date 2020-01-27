@@ -44,7 +44,15 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {                
             posts
         },
-    })    
+    })
+
+    actions.createPage({
+        path: "/rss",
+        component: path.resolve('./src/components/feed.js'),
+        context: {
+            posts
+        }
+    })
 }
 
 // recreates each page node with additional context
