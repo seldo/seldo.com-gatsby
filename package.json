@@ -38,7 +38,7 @@
   ],
   "license": "MIT",
   "scripts": {
-    "build": "npx gatsby-parallel-runner",
+    "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
