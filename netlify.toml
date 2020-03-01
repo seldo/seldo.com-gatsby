@@ -45,3 +45,18 @@
   from = "/weblog/:year"
   to = "/archive"
   status = 301
+
+[[redirects]]
+  from = "/api/getposts"
+  to = "/rss.xml"
+  status = 301
+
+[[redirects]]
+  from = "/api/getposts/*"
+  to = "/rss.xml"
+  status = 301
+
+[[redirects]]
+  from = "/api/getall/*"
+  to = "/rss.xml"
+  status = 301

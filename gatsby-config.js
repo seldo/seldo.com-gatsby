@@ -74,6 +74,7 @@ module.exports = {
                 console.log("----- it's happpening ------")
                 let post = n.postData
                 return Object.assign({}, {
+                  title: post.title,
                   description: post.excerpt,
                   date: post.created,
                   url: site.siteMetadata.siteUrl + "/posts/" + post.codename,
