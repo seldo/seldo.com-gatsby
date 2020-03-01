@@ -69,9 +69,7 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allBlogPost } }) => {
-              console.log(">>>> I'm trying to serialize")
               return allBlogPost.nodes.map( n => {
-                console.log("----- it's happpening ------")
                 let post = n.postData
                 return Object.assign({}, {
                   title: post.title,
