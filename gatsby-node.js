@@ -17,7 +17,7 @@ exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) =
     // create nodes for each blog post
     for(let post of data) {
         createNode({
-            id: post.codename,
+            id: post.codename || '__noid',
             parent: null,
             children: [],
             postData: post,
