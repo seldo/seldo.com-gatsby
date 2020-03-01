@@ -2,11 +2,10 @@ const dbConn = require('./functions/lib/db')
 const helpers = require('./src/lib/helpers')
 const path = require('path')
 
-let posts
-
-const getPosts = async () => {
-
-    return await dbConn( async (conn) => {
+// get data from mySQL and put it into GraphQL
+// I don't really know why this is considered better than just calling it directly
+exports.sourceNodes = async ({ actions: { createNode }, createContentDigest }) => {
+    let data = await dbConn( async (conn) => {
         let rows
         if(process.env.LIMIT_ROWS) {
             rows = await conn.query("SELECT * from content WHERE draft is FALSE ORDER BY published DESC LIMIT ?",[parseInt(process.env.LIMIT_ROWS)])
@@ -15,15 +14,57 @@ const getPosts = async () => {
         }
         return rows
     })
-
+    // create nodes for each blog post
+    for(let post of data) {
+        createNode({
+            id: post.codename || '__noid',
+            parent: null,
+            children: [],
+            postData: post,
+            internal: {
+                type: `BlogPost`,
+                contentDigest: createContentDigest(data),
+            },
+        })    
+    }
 }
 
-// fetches new posts before pages are generated
+let getPosts = async (graphql) => {
+    const { data } = await graphql(`
+        query BlogPostQuery {
+            __typename
+            allBlogPost {
+            nodes {
+                postData {
+                id
+                title
+                codename
+                body
+                created
+                draft
+                excerpt
+                published
+                updated
+                }
+            }
+            }
+        }
+    `)
+
+    let posts = data.allBlogPost.nodes.map( p => {
+        return p.postData
+    })
+    return posts
+}
+
+// you could run stuff here
 exports.onPreBootstrap = async () => {
-    posts = await getPosts()
 }
 
 exports.createPages = async ({ graphql, actions }) => {
+
+    let posts = await getPosts(graphql)
+
     // create individual posts
     for(let i = 0; i < posts.length; i++) {
         let post = posts[i]
@@ -44,11 +85,18 @@ exports.createPages = async ({ graphql, actions }) => {
         context: {                
             posts
         },
-    })    
+    })
+
 }
 
 // recreates each page node with additional context
-exports.onCreatePage = ({ page, actions }) => {
+// adds recent posts to every page
+exports.onCreatePage = async ({ getNodesByType, page, actions }) => {
+
+    let posts = getNodesByType("BlogPost").map( p => {
+        return p.postData
+    })
+
     const { createPage, deletePage } = actions
     deletePage(page)
     createPage({

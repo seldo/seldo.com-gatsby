@@ -1,5 +1,3 @@
-# pre-launch
-
 # post-launch
 - ugh RSS?
 - recent posts list in more places

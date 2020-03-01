@@ -3,7 +3,8 @@ module.exports = {
     title: `Seldo.com`,
     description: `Personal site and blog of Laurie Voss, aka @seldo`,
     author: `@seldo`,
-    staticHostname: process.env.BASE_HOSTNAME
+    staticHostname: process.env.BASE_HOSTNAME,
+    siteUrl: `https://seldo.com/`
   },
   plugins: [
     {
@@ -50,5 +51,61 @@ module.exports = {
           }
       }
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allBlogPost } }) => {
+              return allBlogPost.nodes.map( n => {
+                let post = n.postData
+                return Object.assign({}, {
+                  title: post.title,
+                  description: post.excerpt,
+                  date: post.created,
+                  url: site.siteMetadata.siteUrl + "/posts/" + post.codename,
+                  guid: site.siteMetadata.siteUrl + "/posts/" + post.codename,
+                  custom_elements: [{ "content:encoded": post.body }],
+                })
+              })
+            },
+            query: `
+              {
+                __typename
+                allBlogPost(sort: {order: DESC, fields: postData___created}, limit: 20, filter: {postData: {draft: {eq: 0}}}) {
+                  nodes {
+                    postData {
+                      id
+                      title
+                      codename
+                      body
+                      created
+                      draft
+                      excerpt
+                      published
+                      updated
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Seldo.com RSS Feed",
+          },
+        ],
+      },
+    }
   ],
 }
