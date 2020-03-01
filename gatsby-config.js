@@ -3,7 +3,8 @@ module.exports = {
     title: `Seldo.com`,
     description: `Personal site and blog of Laurie Voss, aka @seldo`,
     author: `@seldo`,
-    staticHostname: process.env.BASE_HOSTNAME
+    staticHostname: process.env.BASE_HOSTNAME,
+    siteUrl: `https://seldo.com/`
   },
   plugins: [
     {
@@ -59,6 +60,8 @@ module.exports = {
               siteMetadata {
                 title
                 description
+                siteUrl
+                site_url: siteUrl
               }
             }
           }
@@ -74,7 +77,7 @@ module.exports = {
                   description: post.excerpt,
                   date: post.created,
                   url: site.siteMetadata.siteUrl + "/posts/" + post.codename,
-                  guid: site.siteMetadata.siteUrl + post.codename,
+                  guid: site.siteMetadata.siteUrl + "/posts/" + post.codename,
                   custom_elements: [{ "content:encoded": post.body }],
                 })
               })
@@ -88,6 +91,7 @@ module.exports = {
                       id
                       title
                       codename
+                      body
                       created
                       draft
                       excerpt
