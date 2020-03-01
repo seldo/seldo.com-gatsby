@@ -50,5 +50,61 @@ module.exports = {
           }
       }
     },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allBlogPost } }) => {
+              console.log(">>>> I'm trying to serialize")
+              return allBlogPost.nodes.map( n => {
+                console.log("----- it's happpening ------")
+                let post = n.postData
+                return Object.assign({}, {
+                  description: post.excerpt,
+                  date: post.created,
+                  url: site.siteMetadata.siteUrl + "/posts/" + post.codename,
+                  guid: site.siteMetadata.siteUrl + post.codename,
+                  custom_elements: [{ "content:encoded": post.body }],
+                })
+              })
+            },
+            query: `
+              {
+                __typename
+                allBlogPost(sort: {order: DESC, fields: postData___created}, limit: 20, filter: {postData: {draft: {eq: 0}}}) {
+                  nodes {
+                    postData {
+                      id
+                      title
+                      codename
+                      created
+                      draft
+                      excerpt
+                      published
+                      updated
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "Your Site's RSS Feed",
+          },
+        ],
+      },
+    }
   ],
 }
