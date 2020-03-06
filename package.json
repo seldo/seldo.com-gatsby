@@ -11,7 +11,7 @@
     "gatsby": "^2.19.12",
     "gatsby-background-image": "^0.9.12",
     "gatsby-image": "^2.2.34",
-    "gatsby-parallel-runner": "^1.1.0",
+    "gatsby-parallel-runner": "^1.2.3",
     "gatsby-plugin-feed": "^2.3.26",
     "gatsby-plugin-google-analytics": "^2.1.31",
     "gatsby-plugin-manifest": "^2.2.31",
