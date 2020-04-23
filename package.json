@@ -8,7 +8,7 @@
     "@sindresorhus/slugify": "^0.9.1",
     "dayjs": "^1.8.18",
     "feed": "^4.1.0",
-    "gatsby": "^2.19.12",
+    "gatsby": "^2.20.29",
     "gatsby-background-image": "^0.9.12",
     "gatsby-image": "^2.2.34",
     "gatsby-parallel-runner": "^1.2.3",
