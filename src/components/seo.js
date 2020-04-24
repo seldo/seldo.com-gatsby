@@ -39,11 +39,25 @@ function SEO({ description, lang, meta, title }) {
     `
   )
 
-  let imgData = images.edges[Math.round(Math.random()*(images.edges.length-1))]
+  // deterministically selected from a hash of the metadata
+  let hash = (str) => {
+    var hash = 0, i, chr;
+    for (i = 0; i < str.length; i++) {
+      chr   = str.charCodeAt(i);
+      hash  = ((hash << 5) - hash) + chr;
+      hash |= 0; // Convert to 32bit integer
+    }
+    return hash
+  }
+  let modHash = (str,size) => { 
+    return Math.abs(hash(str)) % size
+  }
 
   const metaDescription = description || site.siteMetadata.description
 
   let easyTitle = title ? `${title} | ${site.siteMetadata.title}` : `${site.siteMetadata.title}`
+ 
+  let imgData = images.edges[modHash(easyTitle, images.edges.length-1)]
 
   return (
     <Helmet
