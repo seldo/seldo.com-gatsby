@@ -32,15 +32,10 @@ module.exports = {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [
-          {
-            family: `Lato`,
-            subsets: [`latin`],
-          },
-          {
-            family: `Fira Sans`,
-            subsets: [`latin`],
-          },
+          `Lato`,
+          `Fira Sans`
         ],
+        display: 'swap'
       },
     },
     {
