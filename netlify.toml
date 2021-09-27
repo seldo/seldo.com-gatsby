@@ -23,9 +23,6 @@
   from = "/downloads/*"
   to = "https://seldo-dot-com-media.s3-us-west-1.amazonaws.com/downloads/:splat"
   status = 301
-  [[headers]]
-    [headers.values]
-      Access-Control-Allow-Origin = "*"
 
 [[redirects]]
   from = "/weblog/calendar"
@@ -66,3 +63,8 @@
   from = "/api/getall/*"
   to = "/rss.xml"
   status = 301
+
+[[headers]]
+  for = "/downloads/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
