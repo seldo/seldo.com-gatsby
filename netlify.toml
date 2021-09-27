@@ -65,6 +65,6 @@
   status = 301
 
 [[headers]]
-  for = "/downloads/*"
+  for = "/static/fonts/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
