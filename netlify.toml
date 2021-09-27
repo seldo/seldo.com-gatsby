@@ -22,7 +22,9 @@
 [[redirects]]
   from = "/downloads/*"
   to = "https://seldo-dot-com-media.s3-us-west-1.amazonaws.com/downloads/:splat"
-  status = 301  
+  status = 301
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
 
 [[redirects]]
   from = "/weblog/calendar"
