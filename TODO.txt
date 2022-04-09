@@ -1,5 +1,4 @@
 # post-launch
-- ugh RSS?
 - recent posts list in more places
 - image uploads to S3 in admin
 - hero images in posts
