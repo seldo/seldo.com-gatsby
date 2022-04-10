@@ -30,6 +30,10 @@ const BodPage = () => (
                 <li><a href="#q11">Q11: ...and, yes, pickleball</a></li>
             </ul>
 
+            <h2>Other links</h2>
+
+            <p>I participated in a <a href="https://www.youtube.com/watch?v=8K6QWGvZB6c">meet the candidates</a> video hosted by George Calys.</p>
+
             <hr />
 
             <h2 id="introduction">Introduction</h2>
