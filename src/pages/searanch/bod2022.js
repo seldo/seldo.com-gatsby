@@ -251,7 +251,7 @@ const BodPage = () => (
 
             <h2 id="q11">Q11: ...and, yes, pickleball</h2>
 
-            <p>My short answer is that we should allow people to play pickleball. The tennis courts seem to have more than enough slack to give up some of them to another sport, and in the event that the situation changes in future years, re-painting some lines and moving a net around won't break the bank. What <b>would</b> break the bank is building a whole new set of courts that nobody wants to pay for solely because tennis players don't feel like sharing their toys.</p>
+            <p>My short answer is that we should allow people to play pickleball. The tennis courts seem to have more than enough slack to give up some of them to another sport, and in the event that the situation changes in future years, re-painting some lines and moving a net around won't break the bank. What <b>would</b> break the bank is building a whole new set of courts that nobody wants to pay for solely because tennis players don't feel like sharing their facilities.</p>
 
             <p>More important, however, is what the pickleball debate represents. We have (apparently) spent literally years arguing about this, with board-level involvement. What we use our tennis courts for does not seem like an issue that should have ever risen to the attention of the board in the first place, and can be reasonably solved by gathering basic data about how much the courts are used and how often people want to play pickleball. The amount of high-level, expensive time used up by this issue contributes directly to our greater need for staff and raises all of our dues.</p>
 
