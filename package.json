@@ -24,7 +24,7 @@
     "gatsby-source-filesystem": "^2.1.40",
     "gatsby-transformer-sharp": "^2.3.7",
     "mariadb": "^2.1.4",
-    "moment": "^2.24.0",
+    "moment": "^2.29.4",
     "netlify-cli": "^2.36.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
