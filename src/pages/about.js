@@ -33,8 +33,7 @@ const AboutPage = () => (
       </ul>
 
       <h2>Contacting me</h2>
-      <p>If you'd like to contact me, the fastest way is <a href="https://twitter.com/seldo">@seldo</a> on Twitter. I also exist on <a href="https://www.linkedin.com/in/seldo/">LinkedIn</a> and my email is not hard to guess.</p>
-      <p>If for some reason you need it, my <a href="/downloads/resume.2019.10.public.pdf">resume</a> is available.</p>
+      <p>If you'd like to contact me, the fastest way is <a rel="me" href="https://alpaca.gold/@seldo">@seldo@alpaca.gold</a> on Mastodon. I also exist on <a rel="me" href="https://www.linkedin.com/in/seldo/">LinkedIn</a> and my email is not hard to guess.</p>
 
       <PostEnd />
       
